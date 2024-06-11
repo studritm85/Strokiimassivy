@@ -1,62 +1,56 @@
+
 package ru.netology.stats;
 
 public class StatsService {
 
-    // Метод для вычисления суммы всех элементов массива
-    public int calculateSum(int[] data) {
+    public int calculateSum(int[] sales) {
         int sum = 0;
-        for (int value : data) {
-            sum += value;
+        for (int sale : sales) {
+            sum += sale;
         }
         return sum;
     }
 
-    // Метод для вычисления среднего значения элементов массива
-    public double calculateAverage(int[] data) {
-        int sum = calculateSum(data);
-        return (double) sum / data.length;
+    public double calculateAverage(int[] sales) {
+        return (double) calculateSum(sales) / sales.length;
     }
 
-    // Метод для поиска максимального значения в массиве
-    public int findMax(int[] data) {
-        int max = data[0];
-        for (int value : data) {
-            if (value > max) {
-                max = value;
+    public int findMaxMonth(int[] sales) {
+        int maxMonth = 0;
+        for (int i = 1; i < sales.length; i++) {
+            if (sales[i] >= sales[maxMonth]) {
+                maxMonth = i;
             }
         }
-        return max;
+        return maxMonth + 1; // месяцы нумеруются с 1
     }
 
-    // Метод для поиска минимального значения в массиве
-    public int findMin(int[] data) {
-        int min = data[0];
-        for (int value : data) {
-            if (value < min) {
-                min = value;
+    public int findMinMonth(int[] sales) {
+        int minMonth = 0;
+        for (int i = 1; i < sales.length; i++) {
+            if (sales[i] <= sales[minMonth]) {
+                minMonth = i;
             }
         }
-        return min;
+        return minMonth + 1; // месяцы нумеруются с 1
     }
 
-    // Метод для вычисления количества значений выше среднего
-    public int countAboveAverage(int[] data) {
-        double average = calculateAverage(data);
+    public int countMonthsBelowAverage(int[] sales) {
+        double average = calculateAverage(sales);
         int count = 0;
-        for (int value : data) {
-            if (value > average) {
+        for (int sale : sales) {
+            if (sale < average) {
                 count++;
             }
         }
         return count;
     }
 
-    // Метод для вычисления количества значений ниже среднего
-    public int countBelowAverage(int[] data) {
-        double average = calculateAverage(data);
+    public int countMonthsAboveAverage(int[] sales) {
+        double average = calculateAverage(sales);
         int count = 0;
-        for (int value : data) {
-            if (value < average) {
+        for (int sale : sales) {
+            if (sale > average) {
                 count++;
             }
         }
