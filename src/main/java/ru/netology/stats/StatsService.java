@@ -1,21 +1,20 @@
-
 package ru.netology.stats;
 
 public class StatsService {
 
-    public int calculateSum(int[] sales) {
-        int sum = 0;
-        for (int sale : sales) {
+    public long calculateSum(long[] sales) {
+        long sum = 0;
+        for (long sale : sales) {
             sum += sale;
         }
         return sum;
     }
 
-    public double calculateAverage(int[] sales) {
+    public double calculateAverage(long[] sales) {
         return (double) calculateSum(sales) / sales.length;
     }
 
-    public int findMaxMonth(int[] sales) {
+    public int findMaxMonth(long[] sales) {
         int maxMonth = 0;
         for (int i = 1; i < sales.length; i++) {
             if (sales[i] >= sales[maxMonth]) {
@@ -25,7 +24,7 @@ public class StatsService {
         return maxMonth + 1; // месяцы нумеруются с 1
     }
 
-    public int findMinMonth(int[] sales) {
+    public int findMinMonth(long[] sales) {
         int minMonth = 0;
         for (int i = 1; i < sales.length; i++) {
             if (sales[i] <= sales[minMonth]) {
@@ -35,10 +34,10 @@ public class StatsService {
         return minMonth + 1; // месяцы нумеруются с 1
     }
 
-    public int countMonthsBelowAverage(int[] sales) {
+    public int countMonthsBelowAverage(long[] sales) {
         double average = calculateAverage(sales);
         int count = 0;
-        for (int sale : sales) {
+        for (long sale : sales) {
             if (sale < average) {
                 count++;
             }
@@ -46,10 +45,10 @@ public class StatsService {
         return count;
     }
 
-    public int countMonthsAboveAverage(int[] sales) {
+    public int countMonthsAboveAverage(long[] sales) {
         double average = calculateAverage(sales);
         int count = 0;
-        for (int sale : sales) {
+        for (long sale : sales) {
             if (sale > average) {
                 count++;
             }
