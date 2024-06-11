@@ -1,60 +1,61 @@
 package ru.netology.stats;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StatsServiceTest {
+class StatsServiceTest {
 
     @Test
-    public void testCalculateSum() {
+    void shouldCalculateSum() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 180;
-        int actual = service.calculateSum(sales);
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        long expected = 179;
+        long actual = service.calculateSum(sales);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCalculateAverage() {
+    void shouldCalculateAverage() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        double expected = 15.0;
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        double expected = 14.916666666666666;
         double actual = service.calculateAverage(sales);
-        assertEquals(expected, actual, 0.0001); // Допустимое отклонение для double
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void testFindMaxMonth() {
+    void shouldFindMaxMonth() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 8; // Месяц с продажами 20 - это 6-й и 8-й месяцы (нумерация с 1)
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        int expected = 12;
         int actual = service.findMaxMonth(sales);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testFindMinMonth() {
+    void shouldFindMinMonth() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 9; // Месяц с продажами 7 - это 9-й месяц (нумерация с 1)
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        int expected = 9;
         int actual = service.findMinMonth(sales);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCountMonthsBelowAverage() {
+    void shouldCountMonthsBelowAverage() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 5; // Месяцы с продажами ниже среднего (7, 8, 13, 14, 14)
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        int expected = 5;
         int actual = service.countMonthsBelowAverage(sales);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testCountMonthsAboveAverage() {
+    void shouldCountMonthsAboveAverage() {
         StatsService service = new StatsService();
-        int[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 5; // Месяцы с продажами выше среднего (17, 18, 19, 20, 20)
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 10, 21};
+        int expected = 5;
         int actual = service.countMonthsAboveAverage(sales);
         assertEquals(expected, actual);
     }
